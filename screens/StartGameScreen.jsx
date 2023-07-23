@@ -10,14 +10,22 @@ const StartGameScreen = () => {
 				keyboardType='number-pad'
 				autoCorrect={false}
 			/>
-			<PrimaryButton>Reset</PrimaryButton>
-			<PrimaryButton>Confirm</PrimaryButton>
+			<View style={styles.buttons}>
+				<View style={styles.button}>
+					<PrimaryButton>Reset</PrimaryButton>
+				</View>
+				<View style={styles.button}>
+					<PrimaryButton>Confirm</PrimaryButton>
+				</View>
+			</View>
 		</View>
 	);
 };
 
 const styles = StyleSheet.create({
 	inputContainer: {
+		justifyContent: 'center',
+		alignItems: 'center',
 		marginTop: 100,
 		marginHorizontal: 24,
 		padding: 16,
@@ -27,7 +35,7 @@ const styles = StyleSheet.create({
 		shadowColor: 'black',
 		shadowOffset: { width: 0, height: 2 },
 		shadowRadius: 6,
-		shadowOpacity: 0.25,
+		shadowOpacity: 0.25
 	},
 	input: {
 		height: 50,
@@ -38,8 +46,14 @@ const styles = StyleSheet.create({
 		color: '#ddb52f',
 		marginVertical: 8,
 		fontWeight: 'bold',
-		textAlign: 'center',
+		textAlign: 'center'
 	},
+	buttons: {
+		flexDirection: 'row'
+	},
+	button: {
+		flex: 1
+	}
 });
 
 export default StartGameScreen;
