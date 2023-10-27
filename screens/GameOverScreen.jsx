@@ -1,23 +1,24 @@
 import { Image, StyleSheet, Text, View } from 'react-native';
+
+import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
 import Colors from '../constants/colors';
-import PrimaryButton from '../components/ui/PrimaryButton';
 
 const GameOverScreen = ({ roundsNumber, userNumber, onStartNewGame }) => {
 	return (
 		<View style={styles.rootContainer}>
-			<Title>Game Over!</Title>
+			<Title>GAME OVER!</Title>
 			<View style={styles.imageContainer}>
 				<Image
-					source={require('../assets/images/success.png')}
 					style={styles.image}
+					source={require('../assets/images/success.png')}
 				/>
 			</View>
 			<Text style={styles.summaryText}>
 				Your phone needed{' '}
-				<Text style={styles.highlightText}>{roundsNumber}</Text> rounds
-				to guess the number{' '}
-				<Text style={styles.highlightText}>{userNumber}</Text>.
+				<Text style={styles.highlight}>{roundsNumber}</Text> rounds to
+				guess the number{' '}
+				<Text style={styles.highlight}>{userNumber}</Text>.
 			</Text>
 			<PrimaryButton onPress={onStartNewGame}>
 				Start New Game
@@ -25,6 +26,8 @@ const GameOverScreen = ({ roundsNumber, userNumber, onStartNewGame }) => {
 		</View>
 	);
 };
+
+export default GameOverScreen;
 
 const styles = StyleSheet.create({
 	rootContainer: {
@@ -52,10 +55,8 @@ const styles = StyleSheet.create({
 		textAlign: 'center',
 		marginBottom: 24
 	},
-	highlightText: {
+	highlight: {
 		fontFamily: 'open-sans-bold',
 		color: Colors.primary500
 	}
 });
-
-export default GameOverScreen;

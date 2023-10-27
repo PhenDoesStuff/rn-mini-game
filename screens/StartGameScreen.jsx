@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import { Alert, StyleSheet, Text, TextInput, View } from 'react-native';
-import Card from '../components/ui/Card';
+import { TextInput, View, StyleSheet, Alert } from 'react-native';
+
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
 import Colors from '../constants/colors';
+import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
 
 const StartGameScreen = ({ onPickedNumber }) => {
@@ -22,7 +23,7 @@ const StartGameScreen = ({ onPickedNumber }) => {
 
 		if (isNaN(chosenNumber) || chosenNumber <= 0 || chosenNumber > 99) {
 			Alert.alert(
-				'Invalid Number!',
+				'Invalid number!',
 				'Number has to be a number between 1 and 99.',
 				[
 					{
@@ -44,20 +45,21 @@ const StartGameScreen = ({ onPickedNumber }) => {
 			<Card>
 				<InstructionText>Enter a Number</InstructionText>
 				<TextInput
-					style={styles.input}
+					style={styles.numberInput}
 					maxLength={2}
 					keyboardType='number-pad'
+					autoCapitalize='none'
 					autoCorrect={false}
 					onChangeText={numberInputHandler}
 					value={enteredNumber}
 				/>
-				<View style={styles.buttons}>
-					<View style={styles.button}>
+				<View style={styles.buttonsContainer}>
+					<View style={styles.buttonContainer}>
 						<PrimaryButton onPress={resetInputHandler}>
 							Reset
 						</PrimaryButton>
 					</View>
-					<View style={styles.button}>
+					<View style={styles.buttonContainer}>
 						<PrimaryButton onPress={confirmInputHandler}>
 							Confirm
 						</PrimaryButton>
@@ -68,13 +70,15 @@ const StartGameScreen = ({ onPickedNumber }) => {
 	);
 };
 
+export default StartGameScreen;
+
 const styles = StyleSheet.create({
 	rootContainer: {
 		flex: 1,
 		marginTop: 100,
 		alignItems: 'center'
 	},
-	input: {
+	numberInput: {
 		height: 50,
 		width: 50,
 		fontSize: 32,
@@ -85,12 +89,10 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold',
 		textAlign: 'center'
 	},
-	buttons: {
+	buttonsContainer: {
 		flexDirection: 'row'
 	},
-	button: {
+	buttonContainer: {
 		flex: 1
 	}
 });
-
-export default StartGameScreen;

@@ -26,6 +26,7 @@ const styles = StyleSheet.create({
 		elevation: 4,
 		shadowColor: 'black',
 		shadowOffset: { width: 0, height: 0 },
+		shadowOpacity: 0.25,
 		shadowRadius: 3
 	},
 	itemText: {

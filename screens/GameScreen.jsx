@@ -1,29 +1,28 @@
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
-import { Alert, StyleSheet, Text, View } from 'react-native';
+import { Alert, FlatList, StyleSheet, View } from 'react-native';
+
+import GuessLogItem from '../components/game/GuessLogItem';
 import NumberContainer from '../components/game/NumberContainer';
 import Card from '../components/ui/Card';
 import InstructionText from '../components/ui/InstructionText';
 import PrimaryButton from '../components/ui/PrimaryButton';
 import Title from '../components/ui/Title';
-import Colors from '../constants/colors';
-import { FlatList } from 'react-native';
-import GuessLogItem from '../components/game/GuessLogItem';
+
+function generateRandomBetween(min, max, exclude) {
+	const rndNum = Math.floor(Math.random() * (max - min)) + min;
+
+	if (rndNum === exclude) {
+		return generateRandomBetween(min, max, exclude);
+	} else {
+		return rndNum;
+	}
+}
 
 let minBoundary = 1;
 let maxBoundary = 100;
 
-const generateRandomBetween = (min, max, exclude) => {
-	const randomNumber = Math.floor(Math.random() * (max - min)) + min;
-
-	if (randomNumber == exclude) {
-		return generateRandomBetween(min, max, exclude);
-	} else {
-		return randomNumber;
-	}
-};
-
-const GameScreen = ({ userNumber, onGameOver }) => {
+function GameScreen({ userNumber, onGameOver }) {
 	const initialGuess = generateRandomBetween(1, 100, userNumber);
 	const [currentGuess, setCurrentGuess] = useState(initialGuess);
 	const [guessRounds, setGuessRounds] = useState([initialGuess]);
@@ -109,21 +108,12 @@ const GameScreen = ({ userNumber, onGameOver }) => {
 			</View>
 		</View>
 	);
-};
+}
 
 const styles = StyleSheet.create({
 	screen: {
 		flex: 1,
 		padding: 24
-	},
-	title: {
-		fontSize: 24,
-		fontWeight: 'bold',
-		color: Colors.accent500,
-		textAlign: 'center',
-		borderWidth: 2,
-		borderColor: Colors.accent500,
-		padding: 12
 	},
 	instructionText: {
 		marginBottom: 12
